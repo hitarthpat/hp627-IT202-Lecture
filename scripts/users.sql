@@ -21,31 +21,29 @@ first_name    VARCHAR(60) NOT NULL,
 last_name     VARCHAR(60) NOT NULL,
 PRIMARY KEY (user_id)
 );
+
 SHOW TABLES;
 SHOW CREATE TABLE guitar_users;
-
--- DROP TABLE guitar_users;
-
 DESCRIBE guitar_users;
-
 INSERT INTO guitar_users
 (email_address, password, first_name, last_name)
 VALUES
 ('taylor@guitars.com', SHA2('myL0ngP@ssword', 256), 'Taylor', 'Swift');
-
 SELECT * FROM guitar_users;
-
--- Taylor Swift's Lead Guitarist
 INSERT INTO guitar_users
 (email_address, password, first_name, last_name)
 VALUES
 ('paul@guitars.com', SHA2('myL0ngP@ssword', 256), 'Paul', 'Sidoti');
-
-UPDATE guitar_users SET
-email_address = 'taylor.swift@guitars.com'
+UPDATE guitar_users SET 
+email_address = 'taylor.swift@guitars.com' 
 WHERE user_id = 1;
-
 UPDATE guitar_users SET
-email_address = 'paul.sidoti@guitars.com',
-password = SHA2('myShOrtP@ssword', 256)
+email_address = 'paul.sidotu@guitars.com', 
+password = SHA2('myL0ngP@ssword', 256)
 WHERE user_id = 2;
+DELETE FROM guitar_users where user_id = 2;
+SELECT * FROM guitar_users ORDER BY last_name;
+SELECT email_address FROM guitar_users;
+SELECT first_name, last_name FROM guitar_users 
+WHERE email_address = 'taylorswift@guitars.com'
+AND password = SHA2('myL0ngP@ssword', 256);
