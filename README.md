@@ -36,13 +36,6 @@ Screenshot checklist from assignment
 8. Invalid login form before click.
 9. Sorry page after invalid login.
 
-Final git commands
-```bash
-git add website scripts
-git commit -m "Phase 1 login/logout complete"
-git tag IT202-Phase01
-git push
-git push --tags
-```
+
 
 
