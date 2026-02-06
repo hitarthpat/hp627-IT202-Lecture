@@ -2,7 +2,8 @@
  function getDB($echo_mode = false) {
    $host = 'localhost';
    $port = 3306;
-   $dbname = 'guitar';
+   $dbname = 'inventory'; //added 
+   //removed $dbname = 'guitar'; 
    $username = 'ih_user';
    $password = 'InventoryHelper';
    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
