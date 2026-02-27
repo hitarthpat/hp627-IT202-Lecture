@@ -1,0 +1,67 @@
+### Student Name: Hitarth Patel
+### Date: February 25, 2026
+### Course: IT202 Section 002
+### Assignment: Phase 2 - CRUD Clock Types and Clocks
+### Email: hp627@njit.edu
+
+### Create Clock Types
+POST http://localhost:3000/addclocktype.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockTypeID=101
+&clockTypeCode=WALL
+&clockTypeName=Wall
+&clockAisleNumber=A1
+###
+POST http://localhost:3000/addclocktype.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockTypeID=102
+&clockTypeCode=DIGI
+&clockTypeName=Digital
+&clockAisleNumber=B2
+###
+POST http://localhost:3000/addclocktype.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockTypeID=103
+&clockTypeCode=ALRM
+&clockTypeName=Alarm
+&clockAisleNumber=C3
+###
+POST http://localhost:3000/addclocktype.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockTypeID=104
+&clockTypeCode=DESK
+&clockTypeName=Desk
+&clockAisleNumber=D4
+
+### Read Clock Types
+###
+GET http://localhost:3000/listclocktypes.test.php
+
+### Update Clock Type
+###
+POST http://localhost:3000/changeclocktype.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockTypeID=104
+&clockTypeCode=DEKO
+&clockTypeName=Decorative+Desk
+&clockAisleNumber=D5
+
+### Read Clock Types
+###
+GET http://localhost:3000/Phase02Assignment_Step04A.hp627clocktypes.test.php
+
+### Delete Clock Type
+###
+POST http://localhost:3000/removeclocktype.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockTypeID=104
+
+### Final Read Clock Types
+###
+GET http://localhost:3000/listclocktypes.test.php

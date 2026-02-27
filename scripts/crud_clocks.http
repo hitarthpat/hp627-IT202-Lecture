@@ -1,0 +1,254 @@
+### Student Name: Hitarth Patel
+### Date: February 25, 2026
+### Course: IT202 Section 002
+### Assignment: Phase 2 - CRUD Clock Types and Clocks
+### Email: hp627@njit.edu
+
+### Create Clocks - Wall (Type 101)
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2001
+&clockCode=WL001
+&clockName=Vintage+Roman+Wall+Clock
+&clockDescription=This+clock+has+a+classic+Roman+numeral+dial+with+a+silent+sweep+movement.+It+is+ideal+for+living+rooms+and+home+offices+that+need+a+warm+traditional+look.
+&clockStyle=Traditional
+&clockPowerSource=AA+Battery
+&clockTypeID=101
+&clockBuyPrice=22.50
+&clockSellPrice=39.99
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2002
+&clockCode=WL002
+&clockName=Minimal+White+Wall+Clock
+&clockDescription=This+clock+features+a+clean+white+face+with+high+contrast+black+hands+for+easy+reading.+It+fits+modern+spaces+and+works+well+in+kitchens+or+study+rooms.
+&clockStyle=Minimalist
+&clockPowerSource=AA+Battery
+&clockTypeID=101
+&clockBuyPrice=15.00
+&clockSellPrice=27.50
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2003
+&clockCode=WL003
+&clockName=Industrial+Metal+Wall+Clock
+&clockDescription=This+clock+uses+a+brushed+metal+frame+with+large+markers+for+quick+visibility+across+the+room.+It+adds+an+industrial+accent+to+lofts+and+workspace+walls.
+&clockStyle=Industrial
+&clockPowerSource=AA+Battery
+&clockTypeID=101
+&clockBuyPrice=28.75
+&clockSellPrice=46.00
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2004
+&clockCode=WL004
+&clockName=Round+Wood+Wall+Clock
+&clockDescription=This+clock+has+a+solid+wood+face+with+a+natural+grain+finish+that+matches+rustic+furniture.+It+runs+quietly+and+keeps+consistent+time+for+daily+household+use.
+&clockStyle=Rustic
+&clockPowerSource=AA+Battery
+&clockTypeID=101
+&clockBuyPrice=31.20
+&clockSellPrice=52.99
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2005
+&clockCode=WL005
+&clockName=Oversized+Gallery+Wall+Clock
+&clockDescription=This+clock+has+an+oversized+face+designed+to+be+the+centerpiece+of+a+large+wall+area.+It+offers+strong+legibility+from+a+distance+and+blends+with+decorative+spaces.
+&clockStyle=Statement
+&clockPowerSource=AA+Battery
+&clockTypeID=101
+&clockBuyPrice=44.10
+&clockSellPrice=69.95
+
+### Create Clocks - Digital (Type 102)
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2006
+&clockCode=DG001
+&clockName=LED+Desk+Digital+Clock
+&clockDescription=This+clock+shows+large+LED+numbers+with+adjustable+brightness+for+day+and+night+viewing.+It+includes+a+simple+alarm+feature+and+is+easy+to+set+for+students.
+&clockStyle=Modern
+&clockPowerSource=USB+Power
+&clockTypeID=102
+&clockBuyPrice=18.90
+&clockSellPrice=34.49
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2007
+&clockCode=DG002
+&clockName=Mirror+Face+Digital+Clock
+&clockDescription=This+clock+uses+a+mirror+finish+display+that+looks+clean+on+bedside+tables.+It+offers+12+hour+and+24+hour+formats+for+different+user+preferences.
+&clockStyle=Contemporary
+&clockPowerSource=USB+Power
+&clockTypeID=102
+&clockBuyPrice=21.40
+&clockSellPrice=37.80
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2008
+&clockCode=DG003
+&clockName=Travel+Digital+Clock
+&clockDescription=This+clock+has+a+compact+foldable+design+that+fits+easily+in+a+carry+bag+or+backpack.+It+supports+quick+timezone+adjustments+for+frequent+travelers.
+&clockStyle=Portable
+&clockPowerSource=AAA+Battery
+&clockTypeID=102
+&clockBuyPrice=12.25
+&clockSellPrice=24.99
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2009
+&clockCode=DG004
+&clockName=Calendar+Digital+Clock
+&clockDescription=This+clock+displays+time+date+and+day+on+one+screen+for+quick+daily+reference.+It+is+popular+for+office+desks+where+scheduling+visibility+matters.
+&clockStyle=Office
+&clockPowerSource=USB+Power
+&clockTypeID=102
+&clockBuyPrice=25.00
+&clockSellPrice=41.75
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2010
+&clockCode=DG005
+&clockName=Smart+App+Digital+Clock
+&clockDescription=This+clock+connects+to+a+mobile+app+for+alarm+profiles+and+automatic+time+syncing.+It+is+useful+for+users+who+want+remote+controls+and+multi+alarm+schedules.
+&clockStyle=Smart
+&clockPowerSource=USB+Power
+&clockTypeID=102
+&clockBuyPrice=39.99
+&clockSellPrice=64.50
+
+### Create Clocks - Alarm (Type 103)
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2011
+&clockCode=AL001
+&clockName=Twin+Bell+Alarm+Clock
+&clockDescription=This+clock+has+a+traditional+twin+bell+ring+that+is+loud+enough+for+heavy+sleepers.+It+includes+easy+rear+dials+for+fast+alarm+and+time+adjustments.
+&clockStyle=Classic
+&clockPowerSource=AA+Battery
+&clockTypeID=103
+&clockBuyPrice=14.30
+&clockSellPrice=29.20
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2012
+&clockCode=AL002
+&clockName=Gradual+Wake+Alarm+Clock
+&clockDescription=This+clock+uses+a+progressive+alarm+volume+to+provide+a+gentler+wake+experience.+It+works+well+for+people+who+prefer+lower+stress+morning+routines.
+&clockStyle=Wellness
+&clockPowerSource=USB+Power
+&clockTypeID=103
+&clockBuyPrice=33.25
+&clockSellPrice=54.00
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2013
+&clockCode=AL003
+&clockName=Compact+Student+Alarm+Clock
+&clockDescription=This+clock+is+small+and+durable+for+dorm+rooms+and+shared+study+spaces.+It+has+a+simple+layout+that+makes+daily+alarm+setup+quick+and+reliable.
+&clockStyle=Student
+&clockPowerSource=AAA+Battery
+&clockTypeID=103
+&clockBuyPrice=9.80
+&clockSellPrice=19.95
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2014
+&clockCode=AL004
+&clockName=Bedside+Vibration+Alarm+Clock
+&clockDescription=This+clock+includes+a+vibration+module+for+quiet+wake+alerts+without+disturbing+others.+It+is+helpful+for+shared+rooms+or+users+with+noise+sensitivity.
+&clockStyle=Assistive
+&clockPowerSource=USB+Power
+&clockTypeID=103
+&clockBuyPrice=42.10
+&clockSellPrice=67.25
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2015
+&clockCode=AL005
+&clockName=Projection+Alarm+Clock
+&clockDescription=This+clock+projects+the+time+onto+the+ceiling+for+quick+nighttime+visibility.+It+also+supports+dual+alarms+to+match+weekday+and+weekend+schedules.
+&clockStyle=Feature
+&clockPowerSource=USB+Power
+&clockTypeID=103
+&clockBuyPrice=29.50
+&clockSellPrice=49.99
+
+### Extra Clock For Delete Verification
+###
+POST http://localhost:3000/addclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2016
+&clockCode=EX001
+&clockName=Test+Delete+Clock
+&clockDescription=This+clock+record+is+created+only+to+verify+the+delete+operation+in+the+HTTP+workflow.+It+is+removed+later+so+final+data+still+contains+fifteen+clocks.
+&clockStyle=Test
+&clockPowerSource=AA+Battery
+&clockTypeID=101
+&clockBuyPrice=11.00
+&clockSellPrice=17.00
+
+### Read Clocks
+###
+GET http://localhost:3000/listclocks.test.php
+
+### Update Clock
+###
+POST http://localhost:3000/changeclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2001
+&clockCode=WL001X
+&clockName=Vintage+Roman+Wall+Clock+XL
+&clockDescription=This+clock+uses+a+larger+Roman+dial+with+clear+markers+for+better+distance+visibility.+It+keeps+the+same+quiet+movement+while+adding+a+stronger+decor+presence.
+&clockStyle=Traditional+XL
+&clockPowerSource=AA+Battery
+&clockTypeID=101
+&clockBuyPrice=24.00
+&clockSellPrice=42.50
+
+### Read Clocks
+###
+GET http://localhost:3000/listclocks.test.php
+
+### Delete Clock
+###
+POST http://localhost:3000/removeclock.test.php
+Content-Type: application/x-www-form-urlencoded
+
+clockID=2001
+
+### Final Read Clocks
+###
+GET http://localhost:3000/listclocks.test.php
