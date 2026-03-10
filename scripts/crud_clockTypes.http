@@ -53,7 +53,7 @@ clockTypeID=104
 
 ### Read Clock Types
 ###
-GET http://localhost:3000/Phase02Assignment_Step04A.hp627clocktypes.test.php
+GET http://localhost:3000/listclocktypes.test.php
 
 ### Delete Clock Type
 ###

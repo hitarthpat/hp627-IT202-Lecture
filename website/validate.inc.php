@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: February 6, 2026
+ Date: March 10, 2026
  Course: IT202 Section 002
- Assignment: Phase 1 - Login and Logout
+ Assignment: Phase 3 - HTML Website Layout
  Email: hp627@njit.edu
 */
 require_once __DIR__ . '/database.php';

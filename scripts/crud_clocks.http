@@ -247,7 +247,7 @@ GET http://localhost:3000/listclocks.test.php
 POST http://localhost:3000/removeclock.test.php
 Content-Type: application/x-www-form-urlencoded
 
-clockID=2001
+clockID=2016
 
 ### Final Read Clocks
 ###

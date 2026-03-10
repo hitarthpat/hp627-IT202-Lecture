@@ -144,4 +144,90 @@ mysqldump -u root -p clock clocks > scripts\clocks.sql
 mysqldump -u root -p clock > scripts\clock_phase2_backup.sql
 ```
 
+## Phase 3 - HTML Website Layout
+
+Goal:
+1. Build a full phase 3 clock website layout with login, navigation, type pages, clock pages, search pages, and update workflow.
+
+Phase 3 required files:
+1. `website/index.php`
+2. `website/header.inc.php`
+3. `website/nav.inc.php`
+4. `website/footer.inc.php`
+5. `website/main.inc.php`
+6. `website/validate.inc.php`
+7. `website/logout.inc.php`
+8. `website/clocktype.php`
+9. `website/clock.php`
+10. `website/listclocktypes.inc.php`
+11. `website/newclocktype.inc.php`
+12. `website/addclocktype.inc.php`
+13. `website/displayclocktype.inc.php`
+14. `website/listclocks.inc.php`
+15. `website/newclock.inc.php`
+16. `website/addclock.inc.php`
+17. `website/updateclock.inc.php`
+18. `website/changeclock.inc.php`
+19. `phase3_submission_checklist.md`
+20. `scripts/clock_phase3_backup.sql` (generated export)
+
+Phase 3 setup:
+```powershell
+cd d:\study\hitarth\project\hp627-IT202-Lecture
+mysql -u root -p clock -e "source scripts/UsersStatements.sql"
+mysql -u root -p clock -e "source scripts/ClockTypesStatements.sql"
+mysql -u root -p clock -e "source scripts/ClocksStatements.sql"
+```
+
+Phase 3 run:
+```powershell
+cd d:\study\hitarth\project\hp627-IT202-Lecture\website
+php -S localhost:3000
+```
+
+Phase 3 test and verify:
+1. Log in with a seed user and confirm the welcome page shows navigation links.
+2. Open `List Clock Types` and verify the dropdown renders correctly.
+3. Open `Add New Clock Type` and test empty and non-numeric `clockTypeID` validation.
+4. Add a valid clock type and confirm the success message appears.
+5. Open `List Clocks` and verify the dropdown renders correctly with formatted prices.
+6. Open `Add New Clock` and test empty and non-numeric `clockID` validation.
+7. Test invalid `clockTypeID` handling on the add clock form.
+8. Add a valid clock and confirm the success message appears.
+9. Use the clock search form and verify empty, non-numeric, and missing ID errors.
+10. Search for an existing clock ID and verify the update form loads.
+11. Select `Cancel` on the update form and verify the cancellation message appears.
+12. Update an existing clock and verify the new value appears in `List Clocks`.
+13. Use the clock type search form and verify empty, non-numeric, and missing ID errors.
+14. Search for an existing clock type ID and verify the matching clocks appear.
+
+Phase 3 screenshot checklist:
+1. `Phase03Assignment_Step01.YOURUCID.png` (login page)
+2. `Phase03Assignment_Step02.YOURUCID.png` (login page with email and password entered)
+3. `Phase03Assignment_Step03.YOURUCID.png` (welcome page with navigation links)
+4. `Phase03Assignment_Step04A.YOURUCID.png` (add new clock type form before submit)
+5. `Phase03Assignment_Step04B.YOURUCID.png` (successful add clock type message)
+6. `Phase03Assignment_Step05.YOURUCID.png` (list clock types)
+7. `Phase03Assignment_Step06A.YOURUCID.png` (add new clock form before submit)
+8. `Phase03Assignment_Step06B.YOURUCID.png` (successful add clock message)
+9. `Phase03Assignment_Step07.YOURUCID.png` (list clocks showing the new clock)
+10. `Phase03Assignment_Step08A.YOURUCID.png` (search for clock before find)
+11. `Phase03Assignment_Step08B.YOURUCID.png` (update page showing clock data)
+12. `Phase03Assignment_Step08C.YOURUCID.png` (edited clock values before update)
+13. `Phase03Assignment_Step08D.YOURUCID.png` (successful clock update message)
+14. `Phase03Assignment_Step09.YOURUCID.png` (list clocks showing the updated clock)
+15. `Phase03Assignment_Step10A.YOURUCID.png` (search for clock type before find)
+16. `Phase03Assignment_Step10B.YOURUCID.png` (clock type page showing matching clocks)
+
+Phase 3 data requirements before export:
+1. At least 3 clock types exist in `clock_types`.
+2. Clock descriptions contain at least 2 full sentences.
+3. `clock_buy_price` and `clock_sell_price` must be different for each clock.
+4. Visible prices must be formatted with commas and 2 decimal places.
+
+Phase 3 database export:
+```powershell
+cd d:\study\hitarth\project\hp627-IT202-Lecture
+mysqldump -u root -p clock > scripts\clock_phase3_backup.sql
+```
 
