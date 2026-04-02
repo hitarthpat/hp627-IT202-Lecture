@@ -1,22 +1,36 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: March 10, 2026
+ Date: April 1, 2026
  Course: IT202 Section 002
- Assignment: Phase 3 - HTML Website Layout
+ Assignment: Phase 4 - Input Security and CSS Styling
  Email: hp627@njit.edu
 */
 require_once __DIR__ . '/database.php';
 
 $inventoryName = 'Clock';
-$emailAddress = trim($_POST['email_address'] ?? '');
-$password = $_POST['password'] ?? '';
+$emailAddress = postString('email_address');
+$password = postString('password');
 
 if ($emailAddress === '' || $password === '') {
-    echo '<h2>Sorry, login incorrect for the ' . htmlspecialchars($inventoryName, ENT_QUOTES, 'UTF-8') . ' Inventory Website</h2>';
-    echo '<a href="index.php">Please try again</a>';
+    echo '<section class="message-panel error-panel">';
+    echo '<h2>Sorry, login could not be completed.</h2>';
+    echo '<p>Please enter both an email address and a password before submitting the form.</p>';
+    echo '<p><a class="button-link secondary" href="index.php">Please try again</a></p>';
+    echo '</section>';
     return;
 }
+
+$validatedEmailAddress = filter_var($emailAddress, FILTER_VALIDATE_EMAIL);
+if ($validatedEmailAddress === false) {
+    echo '<section class="message-panel error-panel">';
+    echo '<h2>Sorry, login could not be completed.</h2>';
+    echo '<p>The email address format is invalid. Enter a value such as name@example.com and try again.</p>';
+    echo '<p><a class="button-link secondary" href="index.php">Return to Login</a></p>';
+    echo '</section>';
+    return;
+}
+$emailAddress = $validatedEmailAddress;
 
 $query = 'SELECT email_address, pronouns, first_name, last_name, phone_number '
     . 'FROM clock_users '
@@ -24,8 +38,11 @@ $query = 'SELECT email_address, pronouns, first_name, last_name, phone_number '
 
 $db = getDB();
 if (!$db) {
-    echo '<h2>Sorry, login incorrect for the ' . htmlspecialchars($inventoryName, ENT_QUOTES, 'UTF-8') . ' Inventory Website</h2>';
-    echo '<a href="index.php">Please try again</a>';
+    echo '<section class="message-panel error-panel">';
+    echo '<h2>Sorry, login could not be completed.</h2>';
+    echo '<p>The database connection was unavailable while validating your account.</p>';
+    echo '<p><a class="button-link secondary" href="index.php">Please try again</a></p>';
+    echo '</section>';
     return;
 }
 
@@ -48,7 +65,10 @@ if ($fetched) {
     exit;
 }
 
+echo '<section class="message-panel error-panel">';
 echo '<h2>Sorry, login incorrect for the ' . htmlspecialchars($inventoryName, ENT_QUOTES, 'UTF-8') . ' Inventory Website</h2>';
-echo '<a href="index.php">Please try again</a>';
+echo '<p>The email address and password combination did not match an approved user account.</p>';
+echo '<p><a class="button-link secondary" href="index.php">Please try again</a></p>';
+echo '</section>';
 ?>
 

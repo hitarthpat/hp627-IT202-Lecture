@@ -1,0 +1,32 @@
+/* Hitarth Patel, IT-202, Internet Applications, Unit 10 Exercise, hp627@njit.edu */
+main {
+   font-family: Georgia, "Times New Roman", serif;
+   background-color: lavenderblush;
+   margin: 0 auto;
+   width: 550px;
+   border: 5px solid teal;
+   padding: 1em 2em;
+}
+h1 {
+   color: darkgreen;
+   margin-top: 0;
+}
+div {
+   margin-bottom: 0.5em;
+}
+label {
+   float: left;
+   width: 16em;
+   text-align: right;
+}
+input {
+   margin-left: 1em;
+}
+#calculate {
+   margin-bottom: 1em;
+}
+p {
+ font-family: Verdana, Geneva, sans-serif;
+ font-size: 0.95em;
+ color: navy;
+}

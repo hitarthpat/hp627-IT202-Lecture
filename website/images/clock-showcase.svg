@@ -1,0 +1,29 @@
+<!--
+  Student Name: Hitarth Patel
+  Date: April 1, 2026
+  Course: IT202 Section 002
+  Assignment: Phase 4 - Input Security and CSS Styling
+  Email: hp627@njit.edu
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="showcaseTitle showcaseDesc">
+  <title id="showcaseTitle">Clock catalog illustration</title>
+  <desc id="showcaseDesc">Decorative illustration of wall, digital, and alarm clocks arranged on display stands.</desc>
+  <rect width="640" height="420" fill="#f3d4aa"/>
+  <rect x="30" y="30" width="580" height="360" rx="32" fill="#f7ead6" stroke="#8b5a3c" stroke-width="10"/>
+  <rect x="66" y="286" width="508" height="36" rx="18" fill="#8b5a3c"/>
+  <circle cx="170" cy="190" r="86" fill="#e6cfad" stroke="#6f3522" stroke-width="10"/>
+  <circle cx="170" cy="190" r="60" fill="#f7ead6" stroke="#456f75" stroke-width="8"/>
+  <line x1="170" y1="190" x2="170" y2="145" stroke="#6f3522" stroke-width="9" stroke-linecap="round"/>
+  <line x1="170" y1="190" x2="205" y2="210" stroke="#934d2f" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="170" cy="190" r="6" fill="#456f75"/>
+  <rect x="270" y="120" width="138" height="94" rx="18" fill="#456f75"/>
+  <rect x="285" y="135" width="108" height="64" rx="12" fill="#29474c"/>
+  <text x="339" y="178" text-anchor="middle" font-size="34" font-family="Verdana, Arial, sans-serif" fill="#f7ead6">07:30</text>
+  <path d="M470 128c38 0 69 31 69 69v43h-138v-43c0-38 31-69 69-69z" fill="#c99354" stroke="#6f3522" stroke-width="8"/>
+  <circle cx="470" cy="196" r="42" fill="#f7ead6" stroke="#6f3522" stroke-width="8"/>
+  <line x1="470" y1="196" x2="470" y2="167" stroke="#6f3522" stroke-width="8" stroke-linecap="round"/>
+  <line x1="470" y1="196" x2="494" y2="212" stroke="#934d2f" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="470" cy="196" r="5" fill="#456f75"/>
+  <rect x="430" y="238" width="18" height="54" rx="8" fill="#6f3522"/>
+  <rect x="492" y="238" width="18" height="54" rx="8" fill="#6f3522"/>
+</svg>

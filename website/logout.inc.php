@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: March 10, 2026
+ Date: April 1, 2026
  Course: IT202 Section 002
- Assignment: Phase 3 - HTML Website Layout
+ Assignment: Phase 4 - Input Security and CSS Styling
  Email: hp627@njit.edu
 */
 

@@ -1,78 +1,88 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: March 10, 2026
+ Date: April 1, 2026
  Course: IT202 Section 002
- Assignment: Phase 3 - HTML Website Layout
+ Assignment: Phase 4 - Input Security and CSS Styling
  Email: hp627@njit.edu
 */
 require_once __DIR__ . '/clock.php';
 require_once __DIR__ . '/clocktype.php';
 
 if (empty($_SESSION['login'])) {
-    echo '<h2>Please log in first.</h2>';
-    echo '<p><a href="index.php">Return to Home</a></p>';
+    echo '<section class="message-panel error-panel"><h2>Please log in first.</h2><p><a class="button-link secondary" href="index.php">Return to Home</a></p></section>';
     return;
 }
 
-$clockID = trim((string)($_POST['clockID'] ?? ''));
-if ($clockID === '' || !is_numeric($clockID)) {
-    echo '<h2>Sorry, you must enter a valid clock ID number.</h2>';
-    echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
+$clockID = postInt('clockID');
+if ($clockID === null || !is_int($clockID)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, you must enter a valid clock ID number.</h2><p>Use a whole number between 1 and 999999.</p><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
     return;
 }
 
-if (Clock::findClock((int)$clockID)) {
-    echo '<h2>Sorry, a clock with the ID #' . safeText($clockID) . ' already exists.</h2>';
-    echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
+$clockIDText = (string)$clockID;
+
+if (Clock::findClock($clockID)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, a clock with the ID #' . safeText($clockIDText) . ' already exists.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
     return;
 }
 
-$clockCode = trim($_POST['clockCode'] ?? '');
-$clockName = trim($_POST['clockName'] ?? '');
-$clockDescription = trim($_POST['clockDescription'] ?? '');
-$clockStyle = trim($_POST['clockStyle'] ?? '');
-$clockPowerSource = trim($_POST['clockPowerSource'] ?? '');
-$clockTypeIDInput = trim((string)($_POST['clockTypeID'] ?? ''));
-$clockBuyPrice = trim((string)($_POST['clockBuyPrice'] ?? ''));
-$clockSellPrice = trim((string)($_POST['clockSellPrice'] ?? ''));
+$clockCode = postString('clockCode');
+$clockName = postString('clockName');
+$clockDescription = postString('clockDescription');
+$clockStyle = postString('clockStyle');
+$clockPowerSource = postString('clockPowerSource');
+$clockTypeID = postInt('clockTypeID');
+$clockBuyPrice = postFloat('clockBuyPrice');
+$clockSellPrice = postFloat('clockSellPrice');
 
-if (
-    $clockCode === '' ||
-    $clockName === '' ||
-    $clockDescription === '' ||
-    $clockStyle === '' ||
-    $clockPowerSource === ''
-) {
-    echo '<h2>Sorry, all clock text fields are required.</h2>';
-    echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
+if (!stringLengthBetween($clockCode, 2, 10)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_code must contain 2 to 10 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
     return;
 }
 
-if (!is_numeric($clockBuyPrice) || !is_numeric($clockSellPrice)) {
-    echo '<h2>Sorry, clock_buy_price and clock_sell_price must be numeric values.</h2>';
-    echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
+if (!stringLengthBetween($clockName, 10, 100)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_name must contain 10 to 100 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
     return;
 }
 
-$clockTypeID = null;
-if ($clockTypeIDInput !== '') {
-    if (!is_numeric($clockTypeIDInput)) {
-        echo '<h2>Sorry, clock_type_id must be numeric.</h2>';
-        echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
-        return;
-    }
+if (!stringLengthBetween($clockDescription, 100, 255)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_description must contain 100 to 255 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
+    return;
+}
 
-    $clockTypeID = (int)$clockTypeIDInput;
-    if (!ClockType::findClockType($clockTypeID)) {
-        echo '<h2>Sorry, clock type ID #' . safeText($clockTypeIDInput) . ' does not exist.</h2>';
-        echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
-        return;
-    }
+if (!stringLengthBetween($clockStyle, 3, 80)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_style must contain 3 to 80 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
+    return;
+}
+
+if (!stringLengthBetween($clockPowerSource, 3, 80)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_power_source must contain 3 to 80 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
+    return;
+}
+
+if ($clockTypeID === null || !is_int($clockTypeID)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_type_id must be numeric.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
+    return;
+}
+
+if (!ClockType::findClockType($clockTypeID)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock type ID #' . safeText((string)$clockTypeID) . ' does not exist.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
+    return;
+}
+
+if ($clockBuyPrice === null || $clockSellPrice === null || !is_float($clockBuyPrice) || !is_float($clockSellPrice)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_buy_price and clock_sell_price must be numeric values.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
+    return;
+}
+
+if ($clockBuyPrice === $clockSellPrice) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, the buy price and sell price must be different values.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
+    return;
 }
 
 $clock = new Clock(
-    (int)$clockID,
+    $clockID,
     $clockCode,
     $clockName,
     $clockDescription,
@@ -86,14 +96,25 @@ $clock = new Clock(
 try {
     $result = $clock->saveClock();
     if ($result) {
-        echo '<h2>New Clock #' . safeText($clockID) . ' successfully added.</h2>';
-        echo '<p><a href="index.php?content=listclocks">View Clocks</a></p>';
+        echo '<section class="message-panel success-panel">';
+        echo '<h2>New Clock #' . safeText($clockIDText) . ' successfully added.</h2>';
+        echo '<p>The submitted values were safely encoded before display to prevent injected scripts from executing in confirmation or list pages.</p>';
+        echo '<ul class="summary-list">';
+        echo '<li><strong>clock_code:</strong> ' . safeText($clockCode) . '</li>';
+        echo '<li><strong>clock_name:</strong> ' . safeText($clockName) . '</li>';
+        echo '<li><strong>clock_description:</strong> ' . safeText($clockDescription) . '</li>';
+        echo '<li><strong>clock_style:</strong> ' . safeText($clockStyle) . '</li>';
+        echo '<li><strong>clock_power_source:</strong> ' . safeText($clockPowerSource) . '</li>';
+        echo '<li><strong>clock_type_id:</strong> ' . safeText((string)$clockTypeID) . '</li>';
+        echo '<li><strong>clock_buy_price:</strong> $' . safeText(formatMoney($clockBuyPrice)) . '</li>';
+        echo '<li><strong>clock_sell_price:</strong> $' . safeText(formatMoney($clockSellPrice)) . '</li>';
+        echo '</ul>';
+        echo '<p><a class="button-link" href="index.php?content=listclocks">View Clocks</a></p>';
+        echo '</section>';
     } else {
-        echo '<h2>Sorry, there was a problem adding that clock.</h2>';
-        echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
+        echo '<section class="message-panel error-panel"><h2>Sorry, there was a problem adding that clock.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
     }
 } catch (Throwable $th) {
-    echo '<h2>Sorry, there was a problem adding that clock.</h2>';
-    echo '<p><a href="index.php?content=newclock">Return to Add New Clock</a></p>';
+    echo '<section class="message-panel error-panel"><h2>Sorry, there was a problem adding that clock.</h2><p><a class="button-link secondary" href="index.php?content=newclock">Return to Add New Clock</a></p></section>';
 }
 ?>

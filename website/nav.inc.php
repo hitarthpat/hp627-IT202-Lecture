@@ -1,36 +1,51 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: March 10, 2026
+ Date: April 1, 2026
  Course: IT202 Section 002
- Assignment: Phase 3 - HTML Website Layout
+ Assignment: Phase 4 - Input Security and CSS Styling
  Email: hp627@njit.edu
 */
 if (!empty($_SESSION['login'])) {
     $fullName = trim(($_SESSION['firstName'] ?? '') . ' ' . ($_SESSION['lastName'] ?? ''));
 ?>
-  <h3>Welcome</h3>
-  <p><?php echo safeText($fullName); ?></p>
-  <p><a href="index.php"><strong>Home</strong></a></p>
-  <p><a href="index.php?content=listclocktypes"><strong>List Clock Types</strong></a></p>
-  <p><a href="index.php?content=newclocktype"><strong>Add New Clock Type</strong></a></p>
-  <p><a href="index.php?content=listclocks"><strong>List Clocks</strong></a></p>
-  <p><a href="index.php?content=newclock"><strong>Add New Clock</strong></a></p>
-  <p><a href="index.php?content=logout"><strong>Logout</strong></a></p>
+  <h2 class="nav-title">Navigation</h2>
+  <p class="nav-greeting">Signed in as <?php echo safeText($fullName); ?></p>
 
-  <form action="index.php" method="post">
-    <label for="nav_clock_id"><strong>Search for Clock</strong></label><br>
-    <input id="nav_clock_id" type="text" name="clockID" size="14">
-    <input type="hidden" name="content" value="updateclock">
-    <input type="submit" value="Find">
-  </form>
+  <ul class="nav-list">
+    <li><a href="index.php">Home Dashboard</a></li>
+    <li><a href="index.php?content=listclocktypes">List Clock Types</a></li>
+    <li><a href="index.php?content=newclocktype">Add New Clock Type</a></li>
+    <li><a href="index.php?content=listclocks">List Clocks</a></li>
+    <li><a href="index.php?content=newclock">Add New Clock</a></li>
+    <li><a href="index.php?content=logout">Logout</a></li>
+  </ul>
 
-  <form action="index.php" method="post">
-    <label for="nav_clock_type_id"><strong>Search for Clock Type</strong></label><br>
-    <input id="nav_clock_type_id" type="text" name="clockTypeID" size="14">
-    <input type="hidden" name="content" value="displayclocktype">
-    <input type="submit" value="Find">
-  </form>
+  <section class="nav-card-block">
+    <h3>Search for Clock</h3>
+    <p>Use a numeric clock ID to open the update page.</p>
+    <form action="index.php" method="post">
+      <label for="nav_clock_id">Clock ID</label>
+      <input id="nav_clock_id" type="number" name="clockID" min="1" max="999999" step="1" required>
+      <input type="hidden" name="content" value="updateclock">
+      <div class="button-row">
+        <input type="submit" value="Find Clock">
+      </div>
+    </form>
+  </section>
+
+  <section class="nav-card-block">
+    <h3>Search for Clock Type</h3>
+    <p>Use a numeric clock type ID to view matching clocks.</p>
+    <form action="index.php" method="post">
+      <label for="nav_clock_type_id">Clock Type ID</label>
+      <input id="nav_clock_type_id" type="number" name="clockTypeID" min="1" max="999999" step="1" required>
+      <input type="hidden" name="content" value="displayclocktype">
+      <div class="button-row">
+        <input type="submit" value="Find Clock Type">
+      </div>
+    </form>
+  </section>
 <?php
 }
 ?>

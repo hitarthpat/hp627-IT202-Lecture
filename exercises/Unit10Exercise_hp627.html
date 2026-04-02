@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Make Change</title>
+<link rel="stylesheet" type="text/css" href="Unit10Exercise_hp627.css">
+</head>
+<script src="Unit10Exercise_hp627.js"></script>
+<body onload="validateCents()">
+<main>
+  <h1>Change Calculator</h1>
+  <label>Enter amount of change due (0-99):</label>
+  <div>
+    <input type="text" id="cents" oninput="validateCents()" />
+    <input type="button" value="Calculate" name="calculate" id="calculate" onclick="makeChange()" />
+  </div>
+  <div>
+    <label>Quarters:</label>
+    <input type="text" id="quarters" disabled />
+  </div>
+  <div>
+    <label>Dimes:</label>
+    <input type="text" id="dimes" disabled />
+  </div>
+  <div>
+    <label>Nickels:</label>
+    <input type="text" id="nickels" disabled />
+  </div>
+  <div>
+    <label>Pennies:</label>
+    <input type="text" id="pennies" disabled />
+  </div>
+</main>
+<p>Hitarth Patel, IT-202, Internet Applications, Unit 10 Exercise, hp627@njit.edu</p>
+<p>
+  <script>
+    document.getElementById("cents").focus();
+    document.write("The date and time is " + new Date());
+  </script>
+</p>
+</body>
+</html>

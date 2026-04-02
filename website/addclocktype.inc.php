@@ -1,44 +1,52 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: March 10, 2026
+ Date: April 1, 2026
  Course: IT202 Section 002
- Assignment: Phase 3 - HTML Website Layout
+ Assignment: Phase 4 - Input Security and CSS Styling
  Email: hp627@njit.edu
 */
 require_once __DIR__ . '/clocktype.php';
 
 if (empty($_SESSION['login'])) {
-    echo '<h2>Please log in first.</h2>';
-    echo '<p><a href="index.php">Return to Home</a></p>';
+    echo '<section class="message-panel error-panel"><h2>Please log in first.</h2><p><a class="button-link secondary" href="index.php">Return to Home</a></p></section>';
     return;
 }
 
-$clockTypeID = trim((string)($_POST['clockTypeID'] ?? ''));
-if ($clockTypeID === '' || !is_numeric($clockTypeID)) {
-    echo '<h2>Sorry, you must enter a valid clock type ID number.</h2>';
-    echo '<p><a href="index.php?content=newclocktype">Return to Add New Clock Type</a></p>';
+$clockTypeID = postInt('clockTypeID');
+if ($clockTypeID === null || !is_int($clockTypeID)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, you must enter a valid clock type ID number.</h2><p>Use a whole number between 1 and 999999.</p><p><a class="button-link secondary" href="index.php?content=newclocktype">Return to Add New Clock Type</a></p></section>';
     return;
 }
 
-if (ClockType::findClockType((int)$clockTypeID)) {
-    echo '<h2>Sorry, a clock type with the ID #' . safeText($clockTypeID) . ' already exists.</h2>';
-    echo '<p><a href="index.php?content=newclocktype">Return to Add New Clock Type</a></p>';
+$clockTypeIDText = (string)$clockTypeID;
+
+if (ClockType::findClockType($clockTypeID)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, a clock type with the ID #' . safeText($clockTypeIDText) . ' already exists.</h2><p><a class="button-link secondary" href="index.php?content=newclocktype">Return to Add New Clock Type</a></p></section>';
     return;
 }
 
-$clockTypeCode = trim($_POST['clockTypeCode'] ?? '');
-$clockTypeName = trim($_POST['clockTypeName'] ?? '');
-$clockAisleNumber = trim($_POST['clockAisleNumber'] ?? '');
+$clockTypeCode = postString('clockTypeCode');
+$clockTypeName = postString('clockTypeName');
+$clockAisleNumber = postString('clockAisleNumber');
 
-if ($clockTypeCode === '' || $clockTypeName === '' || $clockAisleNumber === '') {
-    echo '<h2>Sorry, clock_type_code, clock_type_name, and clock_aisle_number are required.</h2>';
-    echo '<p><a href="index.php?content=newclocktype">Return to Add New Clock Type</a></p>';
+if (!stringLengthBetween($clockTypeCode, 2, 10)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_type_code must contain 2 to 10 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclocktype">Return to Add New Clock Type</a></p></section>';
+    return;
+}
+
+if (!stringLengthBetween($clockTypeName, 10, 100)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_type_name must contain 10 to 100 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclocktype">Return to Add New Clock Type</a></p></section>';
+    return;
+}
+
+if (!stringLengthBetween($clockAisleNumber, 2, 20)) {
+    echo '<section class="message-panel error-panel"><h2>Sorry, clock_aisle_number must contain 2 to 20 characters.</h2><p><a class="button-link secondary" href="index.php?content=newclocktype">Return to Add New Clock Type</a></p></section>';
     return;
 }
 
 $clockType = new ClockType(
-    (int)$clockTypeID,
+    $clockTypeID,
     $clockTypeCode,
     $clockTypeName,
     $clockAisleNumber
@@ -47,14 +55,20 @@ $clockType = new ClockType(
 try {
     $result = $clockType->saveClockType();
     if ($result) {
-        echo '<h2>New Clock Type #' . safeText($clockTypeID) . ' successfully added.</h2>';
-        echo '<p><a href="index.php?content=listclocktypes">View Clock Types</a></p>';
+        echo '<section class="message-panel success-panel">';
+        echo '<h2>New Clock Type #' . safeText($clockTypeIDText) . ' successfully added.</h2>';
+        echo '<p>The submitted values below are encoded with <code>htmlspecialchars()</code> before display so that test JavaScript is shown as text instead of executing.</p>';
+        echo '<ul class="summary-list">';
+        echo '<li><strong>clock_type_code:</strong> ' . safeText($clockTypeCode) . '</li>';
+        echo '<li><strong>clock_type_name:</strong> ' . safeText($clockTypeName) . '</li>';
+        echo '<li><strong>clock_aisle_number:</strong> ' . safeText($clockAisleNumber) . '</li>';
+        echo '</ul>';
+        echo '<p><a class="button-link" href="index.php?content=listclocktypes">View Clock Types</a></p>';
+        echo '</section>';
     } else {
-        echo '<h2>Sorry, there was a problem adding that clock type.</h2>';
-        echo '<p><a href="index.php?content=newclocktype">Return to Add New Clock Type</a></p>';
+        echo '<section class="message-panel error-panel"><h2>Sorry, there was a problem adding that clock type.</h2><p><a class="button-link secondary" href="index.php?content=newclocktype">Return to Add New Clock Type</a></p></section>';
     }
 } catch (Throwable $th) {
-    echo '<h2>Sorry, there was a problem adding that clock type.</h2>';
-    echo '<p><a href="index.php?content=newclocktype">Return to Add New Clock Type</a></p>';
+    echo '<section class="message-panel error-panel"><h2>Sorry, there was a problem adding that clock type.</h2><p><a class="button-link secondary" href="index.php?content=newclocktype">Return to Add New Clock Type</a></p></section>';
 }
 ?>

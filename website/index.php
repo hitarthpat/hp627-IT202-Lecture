@@ -1,13 +1,14 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: March 10, 2026
+ Date: April 1, 2026
  Course: IT202 Section 002
- Assignment: Phase 3 - HTML Website Layout
+ Assignment: Phase 4 - Input Security and CSS Styling
  Email: hp627@njit.edu
 */
 session_start();
 $inventoryName = 'Clock';
+$assignmentName = 'Phase 4 - Input Security and CSS Styling';
 $content = $_REQUEST['content'] ?? 'main';
 $allowedContent = [
     'main',
@@ -27,10 +28,7 @@ if (!in_array($content, $allowedContent, true)) {
     $content = 'main';
 }
 
-if (
-    empty($_SESSION['login']) &&
-    !in_array($content, ['main', 'validate', 'logout', 'addclocktype', 'addclock', 'changeclock'], true)
-) {
+if (empty($_SESSION['login']) && !in_array($content, ['main', 'validate', 'logout'], true)) {
     $content = 'main';
 }
 
@@ -44,7 +42,106 @@ if (!function_exists('safeText')) {
 if (!function_exists('formatMoney')) {
     function formatMoney($value)
     {
-        return number_format((float)$value, 2);
+        return number_format((float)$value, 2, '.', ',');
+    }
+}
+
+if (!function_exists('postString')) {
+    function postString($key)
+    {
+        $value = filter_input(INPUT_POST, $key, FILTER_UNSAFE_RAW);
+        return trim(is_string($value) ? $value : '');
+    }
+}
+
+if (!function_exists('requestString')) {
+    function requestString($key)
+    {
+        $postValue = filter_input(INPUT_POST, $key, FILTER_UNSAFE_RAW);
+        if (is_string($postValue)) {
+            return trim($postValue);
+        }
+
+        $getValue = filter_input(INPUT_GET, $key, FILTER_UNSAFE_RAW);
+        return trim(is_string($getValue) ? $getValue : '');
+    }
+}
+
+if (!function_exists('stringLengthBetween')) {
+    function stringLengthBetween($value, $min, $max)
+    {
+        $length = strlen(trim((string)$value));
+        return $length >= $min && $length <= $max;
+    }
+}
+
+if (!function_exists('postInt')) {
+    function postInt($key, $min = 1, $max = 999999)
+    {
+        $value = filter_input(
+            INPUT_POST,
+            $key,
+            FILTER_VALIDATE_INT,
+            array(
+                'options' => array(
+                    'min_range' => $min,
+                    'max_range' => $max
+                )
+            )
+        );
+
+        return is_int($value) ? $value : null;
+    }
+}
+
+if (!function_exists('requestInt')) {
+    function requestInt($key, $min = 1, $max = 999999)
+    {
+        $postValue = filter_input(
+            INPUT_POST,
+            $key,
+            FILTER_VALIDATE_INT,
+            array(
+                'options' => array(
+                    'min_range' => $min,
+                    'max_range' => $max
+                )
+            )
+        );
+        if (is_int($postValue)) {
+            return $postValue;
+        }
+
+        $getValue = filter_input(
+            INPUT_GET,
+            $key,
+            FILTER_VALIDATE_INT,
+            array(
+                'options' => array(
+                    'min_range' => $min,
+                    'max_range' => $max
+                )
+            )
+        );
+
+        return is_int($getValue) ? $getValue : null;
+    }
+}
+
+if (!function_exists('postFloat')) {
+    function postFloat($key, $min = 0.01, $max = 999999.99)
+    {
+        $value = filter_input(INPUT_POST, $key, FILTER_VALIDATE_FLOAT);
+        if ($value === false || $value === null) {
+            return null;
+        }
+
+        $value = (float)$value;
+        if (!is_float($value) || $value < $min || $value > $max) {
+            return null;
+        }
+
+        return $value;
     }
 }
 ?>
@@ -54,102 +151,16 @@ if (!function_exists('formatMoney')) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo safeText($inventoryName); ?> Inventory Website</title>
+  <meta name="description" content="Clock Inventory Studio provides secure login, clock type management, clock inventory updates, and styled catalog pages for the IT202 Phase 4 assignment.">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <!--
     Student Name: Hitarth Patel
-    Date: March 10, 2026
+    Date: April 1, 2026
     Course: IT202 Section 002
-    Assignment: Phase 3 - HTML Website Layout
+    Assignment: Phase 4 - Input Security and CSS Styling
     Email: hp627@njit.edu
   -->
-  <style>
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      margin: 0;
-      background: #f6f1e8;
-      color: #1e1a16;
-    }
-    .page-shell {
-      max-width: 1200px;
-      margin: 0 auto;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      grid-template-areas:
-        "header header"
-        "nav main"
-        "footer footer";
-      background: #fffaf2;
-      box-shadow: 0 0 20px rgba(70, 49, 20, 0.08);
-    }
-    header {
-      grid-area: header;
-      padding: 2rem 2.25rem 1.25rem;
-      background: linear-gradient(135deg, #e6c48c, #fff4db);
-      border-bottom: 2px solid #d2b278;
-    }
-    nav {
-      grid-area: nav;
-      padding: 1.5rem;
-      background: #efe2cb;
-      border-right: 1px solid #d9bf96;
-    }
-    main {
-      grid-area: main;
-      padding: 1.75rem 2rem;
-      min-height: 420px;
-    }
-    footer {
-      grid-area: footer;
-      padding: 1rem 2rem 1.5rem;
-      background: #2e2219;
-      color: #f8ead4;
-    }
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-    a {
-      color: #6b3115;
-    }
-    form {
-      margin: 1rem 0;
-    }
-    input, select, textarea, button {
-      font: inherit;
-      padding: 0.4rem 0.5rem;
-      margin-top: 0.2rem;
-    }
-    table {
-      border-collapse: collapse;
-    }
-    td, th {
-      padding: 0.45rem 0.55rem;
-      vertical-align: top;
-    }
-    .full-width {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "header"
-        "main"
-        "footer";
-    }
-    .full-width nav {
-      display: none;
-    }
-    @media (max-width: 800px) {
-      .page-shell {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "header"
-          "nav"
-          "main"
-          "footer";
-      }
-      nav {
-        border-right: 0;
-        border-bottom: 1px solid #d9bf96;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="ih_styles.css">
 </head>
 <body>
   <div class="page-shell<?php echo empty($_SESSION['login']) ? ' full-width' : ''; ?>">

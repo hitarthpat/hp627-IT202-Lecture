@@ -13,6 +13,9 @@ Common prerequisites:
 2. MySQL client available (`mysql --version`).
 3. PHP installed (`php -v`).
 4. VS Code REST Client extension (for `.http` files in Phase 2).
+5. On Mac, install missing tools with Homebrew if needed:
+   `brew install php`
+   `brew install mysql`
 
 All SQL, HTML, and PHP source files must include comments with:
 1. Student Name
@@ -20,6 +23,25 @@ All SQL, HTML, and PHP source files must include comments with:
 3. Course + Section
 4. Assignment Name
 5. Email
+
+## Current Phase 4 State
+
+Current repo state for the semester project:
+1. Inventory name: `clock`
+2. Three required categories exist as `clock_types`
+3. Fifteen required items exist as `clocks`
+4. Phase 4 website styling is served from `website/ih_styles.css`
+5. Local images and favicon are in `website/images`
+6. A ready-to-import phase 4 database backup is in `scripts/clock_phase4_backup.sql`
+7. A full screenshot walkthrough is in `../phase4_submission_checklist.md`
+
+Mac quick start:
+```bash
+cd /path/to/project/hp627-IT202-Lecture
+mysql -u root -p < scripts/clock_phase4_backup.sql
+cd website
+php -S localhost:3000
+```
 
 ## Phase 1 - Login and Logout
 
@@ -229,5 +251,78 @@ Phase 3 database export:
 ```powershell
 cd d:\study\hitarth\project\hp627-IT202-Lecture
 mysqldump -u root -p clock > scripts\clock_phase3_backup.sql
+```
+
+## Phase 4 - Input Security and CSS Styling
+
+Goal:
+1. Upgrade the phase 3 clock website with safer input handling, HTML validation, external CSS styling, image assets, and a phase 4 database backup.
+
+Phase 4 required files:
+1. `website/index.php`
+2. `website/header.inc.php`
+3. `website/nav.inc.php`
+4. `website/main.inc.php`
+5. `website/footer.inc.php`
+6. `website/validate.inc.php`
+7. `website/newclocktype.inc.php`
+8. `website/addclocktype.inc.php`
+9. `website/listclocktypes.inc.php`
+10. `website/newclock.inc.php`
+11. `website/addclock.inc.php`
+12. `website/listclocks.inc.php`
+13. `website/updateclock.inc.php`
+14. `website/changeclock.inc.php`
+15. `website/displayclocktype.inc.php`
+16. `website/ih_styles.css`
+17. `website/images/logo.svg`
+18. `website/images/clock-showcase.svg`
+19. `website/images/favicon.svg`
+20. `scripts/clock_phase4_backup.sql`
+21. `../phase4_submission_checklist.md`
+
+Phase 4 setup:
+```bash
+cd /path/to/project/hp627-IT202-Lecture
+mysql -u root -p < scripts/clock_phase4_backup.sql
+```
+
+Phase 4 run:
+```bash
+cd /path/to/project/hp627-IT202-Lecture/website
+php -S localhost:3000
+```
+
+Phase 4 login accounts:
+1. `alex@clocks.com` / `BassBoost!123`
+2. `riley@clocks.com` / `StudioMix!456`
+3. `jordan@clocks.com` / `NoiseCancel!789`
+
+Phase 4 data included in `clock_phase4_backup.sql`:
+1. 3 clock types:
+   `101 / WALL / Modern Wall Clocks / Aisle B1`
+   `102 / DIGI / Digital Display Clocks / Aisle C2`
+   `103 / ALRM / Bedroom Alarm Clocks / Aisle D4`
+2. 15 clocks already seeded across those three types
+3. Two-sentence descriptions for each clock
+4. Different buy and sell prices for each clock
+
+Phase 4 implementation summary:
+1. Login email format is checked with `filter_var()`
+2. Numeric IDs and prices are filtered with `filter_input()`
+3. Numeric server-side checks use integer and float validation paths
+4. Form output is safely encoded with `htmlspecialchars()` through `safeText()`
+5. Browser-side validation uses `required`, `minlength`, `maxlength`, `min`, `max`, and `step`
+6. The site uses an external stylesheet, themed color palette, logo, showcase image, and favicon
+
+Phase 4 screenshot walkthrough:
+1. Follow `../phase4_submission_checklist.md`
+2. The checklist includes Mac screenshot instructions and exact values for each screenshot
+3. The checklist also includes the extra type `104 / SMART` and extra item `3016` used during the screenshot flow
+
+Phase 4 final export:
+```bash
+cd /path/to/project/hp627-IT202-Lecture
+mysqldump -u root -p clock > scripts/clock_phase4_backup.sql
 ```
 
