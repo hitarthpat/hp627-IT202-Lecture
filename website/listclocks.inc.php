@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 require_once __DIR__ . '/clock.php';
@@ -15,8 +15,8 @@ $clocks = Clock::getClocks();
   <?php
   if ($clocks) {
   ?>
-    <p class="supporting-text">All visible values are formatted and safely encoded. Total clocks: <?php echo safeText((string)count($clocks)); ?>.</p>
-    <form name="clocks" method="post">
+    <p class="supporting-text">All visible values are formatted and safely encoded. Use the JavaScript buttons below to view, update, or delete the selected clock record. Total clocks: <?php echo safeText((string)count($clocks)); ?>.</p>
+    <form id="clock_action_form" name="clocks" method="post" data-entity="clock">
       <div class="list-box">
         <select name="clockID" size="12">
           <?php
@@ -45,6 +45,14 @@ $clocks = Clock::getClocks();
           ?>
         </select>
       </div>
+      <div class="button-row action-toolbar">
+        <button type="button" data-action="view">View Item</button>
+        <button type="button" data-action="update">Update Item</button>
+        <button type="button" data-action="delete" class="secondary">Delete Item</button>
+      </div>
+      <noscript>
+        <p class="help-text">JavaScript is required for the Phase 5 item action buttons.</p>
+      </noscript>
     </form>
   <?php
   } else {

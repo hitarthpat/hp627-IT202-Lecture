@@ -1,15 +1,15 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 ?>
 <section class="content-panel">
   <h2>Add New Clock Type</h2>
-  <p class="supporting-text">Phase 4 requires both browser-side validation and server-side filtering. Use the ranges below to match the assignment rubric and the database structure.</p>
+  <p class="supporting-text">This Phase 5 form keeps the earlier browser-side validation and server-side filtering requirements for clock type records.</p>
   <form name="newclocktype" class="site-form" action="index.php" method="post">
     <table>
       <tr>

@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 require_once __DIR__ . '/clocktype.php';
@@ -12,7 +12,7 @@ $clockTypes = ClockType::getClockTypes();
 ?>
 <section class="content-panel">
   <h2>Add New Clock</h2>
-  <p class="supporting-text">The item form now enforces the phase 4 HTML requirements for numeric ranges, field lengths, and decimal price entry.</p>
+  <p class="supporting-text">The item form keeps the required numeric ranges, field lengths, and decimal price entry rules from the previous phase.</p>
   <form name="newclock" class="site-form" action="index.php" method="post">
     <table>
       <tr>

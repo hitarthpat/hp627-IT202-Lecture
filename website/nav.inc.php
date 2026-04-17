@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 if (!empty($_SESSION['login'])) {
@@ -23,11 +23,11 @@ if (!empty($_SESSION['login'])) {
 
   <section class="nav-card-block">
     <h3>Search for Clock</h3>
-    <p>Use a numeric clock ID to open the update page.</p>
+    <p>Use a numeric clock ID to open the selected clock record.</p>
     <form action="index.php" method="post">
       <label for="nav_clock_id">Clock ID</label>
       <input id="nav_clock_id" type="number" name="clockID" min="1" max="999999" step="1" required>
-      <input type="hidden" name="content" value="updateclock">
+      <input type="hidden" name="content" value="viewclock">
       <div class="button-row">
         <input type="submit" value="Find Clock">
       </div>
@@ -36,11 +36,11 @@ if (!empty($_SESSION['login'])) {
 
   <section class="nav-card-block">
     <h3>Search for Clock Type</h3>
-    <p>Use a numeric clock type ID to view matching clocks.</p>
+    <p>Use a numeric clock type ID to open the type details page.</p>
     <form action="index.php" method="post">
       <label for="nav_clock_type_id">Clock Type ID</label>
       <input id="nav_clock_type_id" type="number" name="clockTypeID" min="1" max="999999" step="1" required>
-      <input type="hidden" name="content" value="displayclocktype">
+      <input type="hidden" name="content" value="viewclocktype">
       <div class="button-row">
         <input type="submit" value="Find Clock Type">
       </div>

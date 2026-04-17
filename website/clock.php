@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 require_once(__DIR__ . '/database.php');
@@ -198,6 +198,52 @@ class Clock
         $stmt->close();
         $db->close();
         return $clocks;
+    }
+
+    static function countClocks()
+    {
+        $db = getDB();
+        if (!$db) {
+            return 0;
+        }
+
+        $query = 'SELECT COUNT(*) AS total_clocks FROM clocks';
+        $result = $db->query($query);
+        $row = $result ? $result->fetch_assoc() : null;
+        $db->close();
+
+        return $row ? (int)$row['total_clocks'] : 0;
+    }
+
+    static function getPriceTotals()
+    {
+        $db = getDB();
+        if (!$db) {
+            return array(
+                'buy_price_total' => 0.0,
+                'sell_price_total' => 0.0
+            );
+        }
+
+        $query = 'SELECT
+                    COALESCE(SUM(clock_buy_price), 0) AS buy_price_total,
+                    COALESCE(SUM(clock_sell_price), 0) AS sell_price_total
+                  FROM clocks';
+        $result = $db->query($query);
+        $row = $result ? $result->fetch_assoc() : null;
+        $db->close();
+
+        if (!$row) {
+            return array(
+                'buy_price_total' => 0.0,
+                'sell_price_total' => 0.0
+            );
+        }
+
+        return array(
+            'buy_price_total' => (float)$row['buy_price_total'],
+            'sell_price_total' => (float)$row['sell_price_total']
+        );
     }
 
     function updateClock()

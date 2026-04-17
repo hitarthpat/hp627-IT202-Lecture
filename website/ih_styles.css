@@ -1,8 +1,8 @@
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 
@@ -410,7 +410,9 @@ button,
 }
 
 .button-link.secondary,
-input[type="submit"].secondary {
+input[type="submit"].secondary,
+button.secondary,
+.secondary-action {
   background: linear-gradient(135deg, var(--teal), #35555a);
 }
 
@@ -448,6 +450,43 @@ select:required:valid {
   color: var(--text-muted);
 }
 
+.panel-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.inventory-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.stat-card {
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(224, 195, 154, 0.26);
+  border: 1px solid rgba(111, 53, 34, 0.12);
+}
+
+.stat-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.stat-value {
+  font-size: 1.7rem;
+  color: var(--teal);
+}
+
+.summary-status {
+  margin-top: 0.9rem;
+}
+
 .summary-list {
   margin: 0.5rem 0 0;
   padding: 0;
@@ -467,6 +506,10 @@ select:required:valid {
 
 .list-box select {
   min-height: 360px;
+}
+
+.action-toolbar {
+  justify-content: flex-start;
 }
 
 .detail-grid {
@@ -543,10 +586,15 @@ select:required:valid {
   .hero-grid,
   .dashboard-grid,
   .highlight-grid,
+  .inventory-summary-grid,
   .detail-grid,
   .footer-grid,
   .site-header {
     grid-template-columns: 1fr;
+  }
+
+  .panel-header-row {
+    flex-direction: column;
   }
 
   .footer-meta {

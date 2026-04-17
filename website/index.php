@@ -1,27 +1,33 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 session_start();
 $inventoryName = 'Clock';
-$assignmentName = 'Phase 4 - Input Security and CSS Styling';
+$assignmentName = 'Phase 5 - JavaScript and AJAX';
 $content = $_REQUEST['content'] ?? 'main';
 $allowedContent = [
     'main',
     'validate',
     'logout',
     'listclocktypes',
+    'viewclocktype',
     'newclocktype',
     'addclocktype',
+    'updateclocktype',
+    'changeclocktype',
+    'removeclocktype',
     'listclocks',
+    'viewclock',
     'newclock',
     'addclock',
     'updateclock',
     'changeclock',
+    'removeclock',
     'displayclocktype'
 ];
 if (!in_array($content, $allowedContent, true)) {
@@ -151,16 +157,17 @@ if (!function_exists('postFloat')) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo safeText($inventoryName); ?> Inventory Website</title>
-  <meta name="description" content="Clock Inventory Studio provides secure login, clock type management, clock inventory updates, and styled catalog pages for the IT202 Phase 4 assignment.">
+  <meta name="description" content="Clock Inventory Studio provides secure login, JavaScript action buttons, live AJAX inventory totals, and validated catalog workflows for the IT202 Phase 5 assignment.">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <!--
     Student Name: Hitarth Patel
-    Date: April 1, 2026
+    Date: April 17, 2026
     Course: IT202 Section 002
-    Assignment: Phase 4 - Input Security and CSS Styling
+    Assignment: Phase 5 - JavaScript and AJAX
     Email: hp627@njit.edu
   -->
   <link rel="stylesheet" href="ih_styles.css">
+  <script src="inventory.js" defer></script>
 </head>
 <body>
   <div class="page-shell<?php echo empty($_SESSION['login']) ? ' full-width' : ''; ?>">

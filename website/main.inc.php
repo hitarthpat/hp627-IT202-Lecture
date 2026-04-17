@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 if (empty($_SESSION['login'])) {
@@ -11,20 +11,20 @@ if (empty($_SESSION['login'])) {
   <section class="content-panel hero-grid">
     <div>
       <h2>Please Login to the <?php echo safeText($inventoryName); ?> Inventory Website</h2>
-      <p>This phase 4 version strengthens login filtering, safely encodes user input, and applies a complete external style sheet across the clock catalog website.</p>
-      <p>Sign in first to review clock types, add new clocks, search by ID, and test the update workflow required in the assignment.</p>
+      <p>This phase 5 version adds JavaScript event handling, live AJAX inventory totals, and full view, update, and delete workflows for clock types and clocks.</p>
+      <p>Sign in first to review clock types, add new clocks, test the JavaScript buttons, and verify the real-time inventory values required in the assignment.</p>
       <div class="highlight-grid">
         <article class="highlight-card">
-          <h3>Security</h3>
-          <p>Email addresses are checked for valid format before login attempts continue.</p>
+          <h3>JavaScript</h3>
+          <p>The list pages now use event-driven buttons for view, update, and delete actions.</p>
         </article>
         <article class="highlight-card">
-          <h3>Styling</h3>
-          <p>Every page uses a shared external CSS file, fixed layout sections, and a custom favicon.</p>
+          <h3>AJAX</h3>
+          <p>The dashboard refreshes type count, item count, and price totals without reloading the page.</p>
         </article>
         <article class="highlight-card">
           <h3>Validation</h3>
-          <p>Clock type and clock forms now use HTML limits and server-side filters together.</p>
+          <p>Clock type and clock forms still use HTML limits and server-side filters together.</p>
         </article>
       </div>
     </div>
@@ -66,16 +66,16 @@ if (empty($_SESSION['login'])) {
       <p>This collection tracks Wall, Digital, and Alarm clocks. Each record stores style, power source, clock type, and pricing details for a consistent catalog workflow.</p>
       <div class="highlight-grid">
         <article class="highlight-card">
-          <h3>List</h3>
-          <p>Review the current clock types and clocks before inserting new records.</p>
+          <h3>List and View</h3>
+          <p>Review the current clock types and clocks, then open the selected record with the JavaScript buttons.</p>
         </article>
         <article class="highlight-card">
-          <h3>Add</h3>
-          <p>Use the validated forms to add a clock type or a fully described clock entry.</p>
+          <h3>Update and Delete</h3>
+          <p>Update clock types, update clocks, and remove records using the complete Phase 5 workflow.</p>
         </article>
         <article class="highlight-card">
-          <h3>Update</h3>
-          <p>Search by clock ID to edit a record and confirm that encoded text still displays safely.</p>
+          <h3>Real Time Info</h3>
+          <p>Use the AJAX panel below to monitor type count, item count, and the buy and sell totals in real time.</p>
         </article>
       </div>
     </div>
@@ -102,6 +102,35 @@ if (empty($_SESSION['login'])) {
         <span><?php echo safeText($phoneNumber); ?></span>
       </article>
     </div>
+  </section>
+
+  <section class="content-panel">
+    <div class="panel-header-row">
+      <div>
+        <h2>Real Time Inventory Info (AJAX)</h2>
+        <p class="supporting-text">The values below are refreshed with JavaScript AJAX from the current database records without reloading the full page.</p>
+      </div>
+      <button type="button" id="refresh_inventory_button" class="secondary-action">Refresh Totals</button>
+    </div>
+    <div id="inventory_summary_panel" class="inventory-summary-grid" data-endpoint="inventoryinfo.php">
+      <article class="stat-card">
+        <span class="stat-label">Type Count</span>
+        <strong id="type_count_value" class="stat-value">--</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Item Count</span>
+        <strong id="item_count_value" class="stat-value">--</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Buy Price Total</span>
+        <strong id="buy_price_total_value" class="stat-value">--</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Sell Price Total</span>
+        <strong id="sell_price_total_value" class="stat-value">--</strong>
+      </article>
+    </div>
+    <p id="inventory_summary_status" class="help-text summary-status">Waiting for AJAX response...</p>
   </section>
 <?php
 }

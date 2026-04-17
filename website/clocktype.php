@@ -1,9 +1,9 @@
 <?php
 /*
  Student Name: Hitarth Patel
- Date: April 1, 2026
+ Date: April 17, 2026
  Course: IT202 Section 002
- Assignment: Phase 4 - Input Security and CSS Styling
+ Assignment: Phase 5 - JavaScript and AJAX
  Email: hp627@njit.edu
 */
 require_once(__DIR__ . '/database.php');
@@ -121,6 +121,21 @@ class ClockType
         return $clockTypes;
     }
 
+    static function countClockTypes()
+    {
+        $db = getDB();
+        if (!$db) {
+            return 0;
+        }
+
+        $query = 'SELECT COUNT(*) AS total_clock_types FROM clock_types';
+        $result = $db->query($query);
+        $row = $result ? $result->fetch_assoc() : null;
+        $db->close();
+
+        return $row ? (int)$row['total_clock_types'] : 0;
+    }
+
     function updateClockType()
     {
         $db = getDB();
@@ -159,6 +174,27 @@ class ClockType
         $stmt->close();
         $db->close();
         return $result;
+    }
+
+    function hasAssignedClocks()
+    {
+        $db = getDB();
+        if (!$db) {
+            return false;
+        }
+
+        $query = 'SELECT COUNT(*) AS total_clocks
+                  FROM clocks
+                  WHERE clock_type_id = ?';
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('i', $this->clock_type_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
+        $db->close();
+
+        return $row && (int)$row['total_clocks'] > 0;
     }
 }
 ?>
